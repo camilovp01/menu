@@ -1,14 +1,25 @@
 <header>
   <div class="mobileBox">
-    <input type="checkbox" id="checkMenu" [checked]='is_checked'>
+    <input type="checkbox" id="checkMenu" [checked]='isChecked'>
     <label for="checkMenu" (click)='showHideMenu()'>
       <div class="mobileMenu">MENU</div>
     </label>
   </div>
 
-  <nav class="menu" [hidden]='!is_checked'>
+  <nav class="menu" [hidden]='!isChecked'>
     <ul>
-      <li *ngFor="let number of ['WORK','CONCTAC','ABOUT']">{{ number }}</li>
+      <li routerLink='home'>Home</li>
+      <li *ngFor="let menu of menus" routerLink='{{menu.name}}'>{{ menu.name }}</li>
     </ul>
   </nav>
 </header>
+<article [hidden]='!isHidden'>
+  <section><app-home></app-home></section>
+</article>
+<article [hidden]='isHidden'>
+  <section>
+    Hola, bienvenido, sabemos que quieres viajar en un <router-outlet></router-outlet>, por
+    favor diligencia el
+    siguiente formulario:
+  </section>
+</article>
