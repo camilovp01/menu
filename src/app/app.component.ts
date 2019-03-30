@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'menu';
+  is_checked = true;
+
+  showHideMenu(){
+    this.is_checked = !this.is_checked;
+  }
 }
