@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Menu } from './menu.model';
+import { DataForm } from './data-form.model';
 
 
 @Injectable({
@@ -14,5 +15,9 @@ export class DataService {
 
   getMenus() {
     return this.clientHttp.get<Menu[]>(this.apiUrl + 'menus/');
+  }
+
+  postDataForm(dataForm: DataForm) {
+    return this.clientHttp.post(this.apiUrl + 'data_forms/', dataForm);
   }
 }

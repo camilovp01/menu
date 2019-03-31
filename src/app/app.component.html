@@ -14,7 +14,7 @@
   </nav>
   <nav class="mobileList" [hidden]='!isChecked'>
     <ul>
-      <li routerLink='home'>Home Mobile</li>
+      <li routerLink='home'>Home</li>
       <li *ngFor="let menu of menus" routerLink='{{menu.name}}'>{{ menu.name }}</li>
     </ul>
   </nav>
@@ -36,10 +36,10 @@
   <article>
     <div class="containForm">
       <form name="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <label for="fullName">Nombre Completo:*</label>
-        <input type="text" formControlName="fullName" required>
-        <div *ngIf="submitted && f.fullName.invalid" class="invalid-feedback">
-          <div *ngIf="f.fullName.errors.required">Nombre Completo es requerido</div>
+        <label for="full_name">Nombre Completo:*</label>
+        <input type="text" formControlName="full_name" required>
+        <div *ngIf="submitted && f.full_name.invalid" class="invalid-feedback">
+          <div *ngIf="f.full_name.errors.required">Nombre Completo es requerido</div>
         </div>
 
         <label for="age">Edad:*</label>
@@ -57,14 +57,14 @@
           <div *ngIf="f.email.errors.email">Email debe ser una direcci&oacute;n v&aacute;lida</div>
         </div>
 
-        <label for="celPhone">Celular:*</label>
-        <input type="number" formControlName="celPhone" required>
-        <div *ngIf="submitted && f.celPhone.invalid" class="invalid-feedback">
-          <div *ngIf="f.celPhone.errors.required">Celular es requerido</div>
+        <label for="celphone">Celular:*</label>
+        <input type="number" formControlName="celphone" required>
+        <div *ngIf="submitted && f.celphone.invalid" class="invalid-feedback">
+          <div *ngIf="f.celphone.errors.required">Celular es requerido</div>
         </div>
-        <input type="hidden" formControlName="travelIn" required>
-        <div *ngIf="submitted && f.travelIn.invalid" class="invalid-feedback">
-          <div *ngIf="f.travelIn.errors.required">is travel es requerido</div>
+        <input type="hidden" formControlName="travel_in" required>
+        <div *ngIf="submitted && f.travel_in.invalid" class="invalid-feedback">
+          <div *ngIf="f.travel_in.errors.required">is travel es requerido</div>
         </div>
         <br><br>
         <button class="btn-submit">Enviar</button>
@@ -72,3 +72,8 @@
     </div>
   </article>
 </section>
+<div class="lightBox" [hidden]='hiddenLigthBox'>
+  <div class="ligthBoxContent">
+    <p innerHtml={{message}}>{{ message }}</p>
+  </div>
+</div>
