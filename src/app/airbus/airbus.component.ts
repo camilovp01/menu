@@ -13,7 +13,7 @@ export class AirbusComponent implements OnInit {
   constructor(private appComponent: AppComponent) { }
 
   ngOnInit() {
-    this.appComponent.registerForm.controls.travelIn.setValue(this.nameItem);
+    this.appComponent.registerForm.controls.travel_in.setValue(this.nameItem);
     this.appComponent.setIsHidden(false);
   }
 

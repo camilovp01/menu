@@ -1,9 +1,9 @@
 export class DataForm {
 
-    public fullName: string;
+    public full_name: string;
     public email: string;
     public celPhone: number;
-    public travelIn: string;
+    public travel_in: string;
     public age: number;
 
 }

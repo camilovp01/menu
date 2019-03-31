@@ -3,6 +3,7 @@ import { Menu } from './menu.model';
 import { DataService } from './data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataForm } from './data-form.model';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,18 +16,20 @@ export class AppComponent implements OnInit {
   menus: Menu[];
   isHidden = true;
   travelIn = '';
+  hiddenLigthBox = true;
 
   registerForm: FormGroup;
   submitted = false;
+  message = "";
 
   constructor(private service: DataService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
+      full_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      celPhone: ['', Validators.required],
-      travelIn: ['', Validators.required],
+      celphone: ['', Validators.required],
+      travel_in: ['', Validators.required],
       age: ['', [Validators.required, Validators.min(18), Validators.max(100)]]
     });
     this.service.getMenus().subscribe((data) => { this.menus = data });
@@ -51,7 +54,27 @@ export class AppComponent implements OnInit {
     }
     let dataForm: DataForm;
     dataForm = this.registerForm.value;
-    alert('SUCCESS!! :-)' + JSON.stringify(dataForm));
+    this.service.postDataForm(dataForm).subscribe((res) => {
+      console.log(res);
+      this.hiddenLigthBox = false;
+      this.message = "Tu informaci&oacute;n fue enviada con &eacute;xito, estaremos en contacto contigo.";
+      this.resetForm();
+    },
+      (error) => {
+        this.hiddenLigthBox = false;
+        this.message = "Ocurrió un error en el envío de la información. Contacta a tu administrador"
+        console.log("Error", error);
+
+      });
+    let source = timer(5000);
+    source.subscribe(val => this.hiddenLigthBox = true);
+  }
+
+  resetForm() {
+    this.registerForm.controls.full_name.reset();
+    this.registerForm.controls.age.reset();
+    this.registerForm.controls.email.reset();
+    this.registerForm.controls.celphone.reset();
   }
 
 }
