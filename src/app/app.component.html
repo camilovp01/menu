@@ -6,20 +6,69 @@
     </label>
   </div>
 
-  <nav class="menu" [hidden]='!isChecked'>
+  <nav class="menu" [hidden]='isChecked'>
     <ul>
       <li routerLink='home'>Home</li>
       <li *ngFor="let menu of menus" routerLink='{{menu.name}}'>{{ menu.name }}</li>
     </ul>
   </nav>
+  <nav class="mobileList" [hidden]='!isChecked'>
+    <ul>
+      <li routerLink='home'>Home Mobile</li>
+      <li *ngFor="let menu of menus" routerLink='{{menu.name}}'>{{ menu.name }}</li>
+    </ul>
+  </nav>
 </header>
-<article [hidden]='!isHidden'>
-  <section><app-home></app-home></section>
-</article>
-<article [hidden]='isHidden'>
-  <section>
-    Hola, bienvenido, sabemos que quieres viajar en un <router-outlet></router-outlet>, por
-    favor diligencia el
-    siguiente formulario:
-  </section>
-</article>
+<section [hidden]='!isHidden'>
+  <article>
+    <app-home></app-home>
+  </article>
+</section>
+<section [hidden]='isHidden'>
+  <article>
+    <h1>Hola, bienvenido!</h1>
+    <p>Sabemos que quieres viajar en un <router-outlet></router-outlet>, por
+      favor diligencia el
+      siguiente formulario:</p>
+  </article>
+</section>
+<section [hidden]='isHidden'>
+  <article>
+    <div class="containForm">
+      <form name="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <label for="fullName">Nombre Completo:*</label>
+        <input type="text" formControlName="fullName" required>
+        <div *ngIf="submitted && f.fullName.invalid" class="invalid-feedback">
+          <div *ngIf="f.fullName.errors.required">Nombre Completo es requerido</div>
+        </div>
+
+        <label for="age">Edad:*</label>
+        <input type="number" formControlName="age" min="18" max="100" required>
+        <div *ngIf="submitted && f.age.invalid" class="invalid-feedback">
+          <div *ngIf="f.age.errors.required">Edad es requerido</div>
+          <div *ngIf="f.age.errors.min">Edad debe ser mayor o igual que 18</div>
+          <div *ngIf="f.age.errors.max">Edad debe ser menor o igual que 100</div>
+        </div>
+
+        <label for="email">Email:*</label>
+        <input type="text" formControlName="email" required>
+        <div *ngIf="submitted && f.email.invalid" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email es requerido</div>
+          <div *ngIf="f.email.errors.email">Email debe ser una direcci&oacute;n v&aacute;lida</div>
+        </div>
+
+        <label for="celPhone">Celular:*</label>
+        <input type="number" formControlName="celPhone" required>
+        <div *ngIf="submitted && f.celPhone.invalid" class="invalid-feedback">
+          <div *ngIf="f.celPhone.errors.required">Celular es requerido</div>
+        </div>
+        <input type="hidden" formControlName="travelIn" required>
+        <div *ngIf="submitted && f.travelIn.invalid" class="invalid-feedback">
+          <div *ngIf="f.travelIn.errors.required">is travel es requerido</div>
+        </div>
+        <br><br>
+        <button class="btn-submit">Enviar</button>
+      </form>
+    </div>
+  </article>
+</section>

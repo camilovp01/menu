@@ -10,7 +10,7 @@ header {
     display: none;
 }
 
-.menu ul {
+.menu ul, .mobileList ul {
     margin: 0;
     list-style: none;
     padding: 0;
@@ -20,14 +20,14 @@ header {
     justify-content: center;
 }
 
-.menu li {
+.menu li, .mobileList li {
     display: block;
     padding: 18px 25px;
     color: white;
     font-size: 16px;
 }
 
-.menu li:hover {
+.menu li:hover, .mobileList li:hover {
     background-color: #808080;
     border: 1px solid #ccc;
 }
@@ -54,10 +54,55 @@ header {
     border: 1px solid #ccc;
 }
 
+section {
+    padding: 20px 20px;
+    margin-top: 20px;
+    background-color: #cccccc6b;
+}
+
+.containForm {
+    position: relative;
+    width: 100%;
+}
+
+form input[type=text], form input[type=number], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form label {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 30px 10px 5px;
+}
+
+.btn-submit {
+    background-color: #41a245;
+    border-radius: 20px;
+    border: #41a245 solid;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 10px;
+}
+
+.invalid-feedback {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: red;
+}
+
 @media only screen and (max-width:720px) {
-    .menu ul {
-        flex-direction: column;
-    }
     .mobileBox {
         background-color: #999;
         border: 1px solid #ccc;
@@ -65,7 +110,13 @@ header {
         margin: 1rem;
         display: block;
     }
-    .menu li {
+    .menu {
+        display: none;
+    }
+    .mobileList ul {
+        flex-direction: column;
+    }
+    .mobileList li {
         border: 1px solid #ccc;
     }
 }
